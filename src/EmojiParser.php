@@ -17,7 +17,7 @@ use League\CommonMark\Inline\Parser\AbstractInlineParser;
 use League\CommonMark\InlineParserContext;
 
 /**
- * This is the emoji pareser class.
+ * This is the emoji parser class.
  *
  * @author Graham Campbell <graham@alt-three.com>
  */
