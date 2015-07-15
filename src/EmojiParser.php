@@ -12,9 +12,9 @@
 namespace AltThree\Emoji;
 
 use League\CommonMark\ContextInterface;
-use League\CommonMark\InlineParserContext;
 use League\CommonMark\Inline\Element\Image;
 use League\CommonMark\Inline\Parser\AbstractInlineParser;
+use League\CommonMark\InlineParserContext;
 
 /**
  * This is the emoji pareser class.
@@ -31,7 +31,7 @@ class EmojiParser extends AbstractInlineParser
     protected $map;
 
     /**
-     * Create a emoji parser instance.
+     * Create a new emoji parser instance.
      *
      * @param string[] $map
      *

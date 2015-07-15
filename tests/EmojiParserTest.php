@@ -11,8 +11,6 @@
 
 namespace AltThree\Tests\Emoji;
 
-use AltThree\Emoji\EmojiParser;
-
 /**
  * This is the emoji parser test class.
  *
