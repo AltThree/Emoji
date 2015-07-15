@@ -1,0 +1,50 @@
+{
+    "name": "alt-three/emoji",
+    "description": "An Emoji Parser For Laravel 5",
+    "keywords": ["emoji", "parser", "Emoji", "Alt Three"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "James Brooks",
+            "email": "james@alt-three.com"
+        },
+        {
+            "name": "Graham Campbell",
+            "email": "graham@alt-three.com"
+        },
+        {
+            "name": "Joseph Cohen",
+            "email": "joe@alt-three.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.9",
+        "graham-campbell/markdown": "~4.0",
+        "guzzlehttp/guzzle": "~5.3|~6.0",
+        "illuminate/support": "5.1.*"
+    },
+    "require-dev": {
+        "graham-campbell/testbench": "~3.0",
+        "phpunit/phpunit": "^4.7.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "AltThree\\Emoji\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "AltThree\\Tests\\Emoji\\": "tests/"
+        }
+    },
+    "config": {
+        "preferred-install": "dist"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
