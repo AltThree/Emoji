@@ -96,7 +96,9 @@ class EmojiParser extends AbstractInlineParser
             return false;
         }
 
-        $inlineContext->getInlines()->add(new Image($this->map[$key], $key));
+        $inline = new Image($this->map[$key], $key);
+        $inline->data['attributes'] = ['class' => 'emoji', 'data-emoji' => $key];
+        $inlineContext->getInlines()->add($inline);
 
         return true;
     }
