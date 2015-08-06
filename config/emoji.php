@@ -16,7 +16,8 @@ return [
     | GitHub Token
     |--------------------------------------------------------------------------
     |
-    | Configure a GitHub token here to decrease the rate limit.
+    | Here you may get us to use your personal github access token to increase
+    | your rate limit while contacting GitHub's API.
     |
     */
 
