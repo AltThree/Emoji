@@ -60,13 +60,11 @@ class EmojiServiceProvider extends ServiceProvider
         $app = $this->app;
 
         $app->singleton('emoji', function ($app) {
-            $map = $app->cache->remember('emoji', 10080, function () {
+            $map = $app->cache->remember('emoji', 10080, function ($app) {
                 $headers = [];
 
-                if ($githubToken = config('emoji.token')) {
-                    $headers = [
-                        'OAUTH-TOKEN' => $githubToken,
-                    ];
+                if ($token = $app->config->get('emoji.token')) {
+                    $headers['OAUTH-TOKEN'] = $token;
                 }
 
                 return json_decode((new Client())->get('https://api.github.com/emojis', [
