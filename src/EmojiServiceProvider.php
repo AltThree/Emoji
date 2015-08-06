@@ -61,7 +61,7 @@ class EmojiServiceProvider extends ServiceProvider
 
         $app->singleton('emoji', function ($app) {
             $map = $app->cache->remember('emoji', 10080, function ($app) {
-                $headers = [];
+                $headers = ['Accept' => 'application/vnd.github.v3+json'];
 
                 if ($token = $app->config->get('emoji.token')) {
                     $headers['OAUTH-TOKEN'] = $token;
