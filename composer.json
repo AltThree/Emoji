@@ -21,6 +21,7 @@
         "php": ">=5.5.9",
         "graham-campbell/markdown": "~4.0",
         "guzzlehttp/guzzle": "~5.3|~6.0",
+        "illuminate/contracts": "5.1.*",
         "illuminate/support": "5.1.*"
     },
     "require-dev": {

@@ -12,6 +12,7 @@
 namespace AltThree\Emoji;
 
 use GuzzleHttp\Client;
+use Illuminate\Contracts\Debug\ExceptionHandler;
 use Illuminate\Support\ServiceProvider;
 use League\CommonMark\Environment;
 
@@ -88,7 +89,12 @@ class EmojiServiceProvider extends ServiceProvider
         $app = $this->app;
 
         $app->resolving('markdown.environment', function (Environment $environment) use ($app) {
-            $environment->addInlineParser($app['emoji']);
+            try {
+                $environment->addInlineParser($app['emoji']);
+            } catch (Exception $e) {
+                $app->make(ExceptionHandler::class)->report($e);
+            }
+            
         });
     }
 
