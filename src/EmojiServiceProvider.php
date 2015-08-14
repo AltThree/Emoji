@@ -11,6 +11,7 @@
 
 namespace AltThree\Emoji;
 
+use Exception;
 use GuzzleHttp\Client;
 use Illuminate\Contracts\Debug\ExceptionHandler;
 use Illuminate\Support\ServiceProvider;
