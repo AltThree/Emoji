@@ -94,7 +94,7 @@ class EmojiServiceProvider extends ServiceProvider
             } catch (Exception $e) {
                 $app->make(ExceptionHandler::class)->report($e);
             }
-            
+
         });
     }
 
