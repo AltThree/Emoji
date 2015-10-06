@@ -14,6 +14,7 @@ namespace AltThree\Emoji;
 use Exception;
 use GuzzleHttp\Client;
 use Illuminate\Contracts\Debug\ExceptionHandler;
+use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
 use League\CommonMark\Environment;
 
@@ -31,7 +32,7 @@ class EmojiServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->setupConfig();
+        $this->setupConfig($this->app);
         $this->registerEmojiParser();
         $this->registerEnvironment();
     }
@@ -39,9 +40,11 @@ class EmojiServiceProvider extends ServiceProvider
     /**
      * Setup the config.
      *
+     * @param \Illuminate\Contracts\Foundation\Application $app
+     *
      * @return void
      */
-    protected function setupConfig()
+    protected function setupConfig(Application $app)
     {
         $source = realpath(__DIR__.'/../config/emoji.php');
 
