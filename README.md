@@ -20,6 +20,11 @@ Once Alt Three Emoji is installed, you need to register the service provider. Op
 * `'AltThree\Emoji\EmojiServiceProvider'`
 
 
+## Security
+
+If you discover a security vulnerability within this package, please e-mail us at support@alt-three.com. All security vulnerabilities will be promptly addressed.
+
+
 ## License
 
 Alt Three Emoji is licensed under [The MIT License (MIT)](LICENSE).
