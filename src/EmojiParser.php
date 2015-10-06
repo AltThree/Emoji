@@ -11,7 +11,6 @@
 
 namespace AltThree\Emoji;
 
-use League\CommonMark\ContextInterface;
 use League\CommonMark\Inline\Element\Image;
 use League\CommonMark\Inline\Parser\AbstractInlineParser;
 use League\CommonMark\InlineParserContext;
@@ -57,9 +56,11 @@ class EmojiParser extends AbstractInlineParser
      *
      * If it does, then we do the necessary.
      *
+     * @param \League\CommonMark\InlineParserContext $inlineContext
+     *
      * @return bool
      */
-    public function parse(ContextInterface $context, InlineParserContext $inlineContext)
+    public function parse(InlineParserContext $inlineContext)
     {
         $cursor = $inlineContext->getCursor();
 
@@ -98,7 +99,7 @@ class EmojiParser extends AbstractInlineParser
 
         $inline = new Image($this->map[$key], $key);
         $inline->data['attributes'] = ['class' => 'emoji', 'data-emoji' => $key];
-        $inlineContext->getInlines()->add($inline);
+        $inlineContext->getContainer()->appendChild($inline);
 
         return true;
     }
