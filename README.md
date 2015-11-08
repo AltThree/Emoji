@@ -5,15 +5,23 @@ An emoji parser for Laravel 5.
 
 ## Installation
 
-[PHP](https://php.net) 5.5+ or [HHVM](http://hhvm.com) 3.6+, and [Composer](https://getcomposer.org) are required.
+Either [PHP](https://php.net) 5.5+ or [HHVM](http://hhvm.com) 3.6+ are required.
 
-To get the latest version of Alt Three Emoji, simply add the following line to the require block of your `composer.json` file:
+To get the latest version of Alt Three Emoji, simply require the project using [Composer](https://getcomposer.org):
 
+```bash
+$ composer require alt-three/emoji
 ```
-"alt-three/emoji": "~2.0"
-```
 
-You'll then need to run `composer install` or `composer update` to download it and have the autoloader updated.
+Instead, you may of course manually update your require block and run `composer update` if you so choose:
+
+```json
+{
+    "require": {
+        "alt-three/emoji": "^2.0"
+    }
+}
+```
 
 Once Alt Three Emoji is installed, you need to register the service provider. Open up `config/app.php` and add the following to the `providers` key.
 
