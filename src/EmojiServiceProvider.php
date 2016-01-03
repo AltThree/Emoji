@@ -68,7 +68,7 @@ class EmojiServiceProvider extends ServiceProvider
     {
         $app = $this->app;
 
-        $app->singleton('emoji', function ($app) {
+        $app->singleton('emoji', function (Application $app) {
             $map = $app->cache->remember('emoji', 10080, function () use ($app) {
                 $headers = ['Accept' => 'application/vnd.github.v3+json'];
 
