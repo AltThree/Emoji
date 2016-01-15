@@ -11,6 +11,7 @@
 
 namespace AltThree\Tests\Emoji;
 
+use AltThree\Emoji\EmojiExtension;
 use AltThree\Emoji\EmojiParser;
 use GrahamCampbell\TestBenchCore\ServiceProviderTrait;
 
@@ -28,8 +29,13 @@ class ServiceProviderTest extends AbstractTestCase
         $this->assertIsInjectable(EmojiParser::class);
     }
 
+    public function testEmojiExtensionIsInjectable()
+    {
+        $this->assertIsInjectable(EmojiExtension::class);
+    }
+
     public function testEnvironmentIsSetup()
     {
-        $this->assertTrue(in_array($this->app->make('emoji'), $this->app->make('markdown.environment')->getInlineParsers(), true));
+        $this->assertTrue(in_array($this->app->make(EmojiParser::class), $this->app->make('markdown.environment')->getInlineParsers(), true));
     }
 }

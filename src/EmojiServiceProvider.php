@@ -35,8 +35,7 @@ class EmojiServiceProvider extends ServiceProvider
     public function register()
     {
         $this->setupConfig($this->app);
-        $this->registerEmojiParser();
-        $this->registerEnvironment();
+        $this->registerParser($this->app);
     }
 
     /**
@@ -60,15 +59,15 @@ class EmojiServiceProvider extends ServiceProvider
     }
 
     /**
-     * Register the emoji parser class.
+     * Register the parser class.
+     *
+     * @param \Illuminate\Contracts\Foundation\Application $app
      *
      * @return void
      */
-    protected function registerEmojiParser()
+    protected function registerParser(Application $app)
     {
-        $app = $this->app;
-
-        $app->singleton('emoji', function (Application $app) {
+        $app->singleton(EmojiParser::class, function (Application $app) {
             $map = $app->cache->remember('emoji', 10080, function () use ($app) {
                 $headers = ['Accept' => 'application/vnd.github.v3+json'];
 
@@ -83,26 +82,6 @@ class EmojiServiceProvider extends ServiceProvider
 
             return new EmojiParser($map);
         });
-
-        $this->app->alias('emoji', EmojiParser::class);
-    }
-
-    /**
-     * Register the environment.
-     *
-     * @return void
-     */
-    protected function registerEnvironment()
-    {
-        $app = $this->app;
-
-        $app->resolving('markdown.environment', function (Environment $environment) use ($app) {
-            try {
-                $environment->addInlineParser($app['emoji']);
-            } catch (Exception $e) {
-                $app->make(ExceptionHandler::class)->report($e);
-            }
-        });
     }
 
     /**
@@ -113,7 +92,7 @@ class EmojiServiceProvider extends ServiceProvider
     public function provides()
     {
         return [
-            'emoji',
+            //
         ];
     }
 }
