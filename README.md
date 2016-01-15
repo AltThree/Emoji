@@ -18,7 +18,7 @@ Instead, you may of course manually update your require block and run `composer 
 ```json
 {
     "require": {
-        "alt-three/emoji": "^2.0"
+        "alt-three/emoji": "^3.0"
     }
 }
 ```
@@ -26,6 +26,8 @@ Instead, you may of course manually update your require block and run `composer 
 Once Alt Three Emoji is installed, you need to register the service provider. Open up `config/app.php` and add the following to the `providers` key.
 
 * `'AltThree\Emoji\EmojiServiceProvider'`
+
+If you'd like to use with [Laravel Markdown](https://github.com/GrahamCampbell/Laravel-Markdown), you'll need to add `'AltThree\Emoji\EmojiExtension'` to the `'extensions'` array in the `markdown.php` config.
 
 
 ## Security
