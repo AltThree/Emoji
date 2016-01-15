@@ -11,14 +11,11 @@
 
 namespace AltThree\Emoji;
 
-use Exception;
 use GuzzleHttp\Client;
-use Illuminate\Contracts\Debug\ExceptionHandler;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Foundation\Application as LaravelApplication;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Lumen\Application as LumenApplication;
-use League\CommonMark\Environment;
 
 /**
  * This is the emoji service provider class.
