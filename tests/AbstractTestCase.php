@@ -11,7 +11,7 @@
 
 namespace AltThree\Tests\Emoji;
 
-use AltThree\Emoji\EmojiParser;
+use AltThree\Emoji\EmojiExtension;
 use AltThree\Emoji\EmojiServiceProvider;
 use GrahamCampbell\Markdown\MarkdownServiceProvider;
 use GrahamCampbell\TestBench\AbstractPackageTestCase;
@@ -34,7 +34,7 @@ abstract class AbstractTestCase extends AbstractPackageTestCase
     {
         parent::getEnvironmentSetUp($app);
 
-        $app->config->set('markdown.extensions', [EmojiParser::class]);
+        $app->config->set('markdown.extensions', [EmojiExtension::class]);
 
         $app->cache->forever('emoji', [
             '+1'             => 'https://assets-cdn.github.com/images/icons/emoji/unicode/1f44d.png?v5',
