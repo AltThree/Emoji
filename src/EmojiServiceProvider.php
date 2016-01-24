@@ -12,7 +12,7 @@
 namespace AltThree\Emoji;
 
 use GuzzleHttp\Client;
-use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\Container\Container;
 use Illuminate\Foundation\Application as LaravelApplication;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Lumen\Application as LumenApplication;
@@ -25,46 +25,51 @@ use Laravel\Lumen\Application as LumenApplication;
 class EmojiServiceProvider extends ServiceProvider
 {
     /**
-     * Register the service provider.
+     * Boot the service provider.
      *
      * @return void
      */
-    public function register()
+    public function boot()
     {
-        $this->setupConfig($this->app);
-        $this->registerParser($this->app);
+        $this->setupConfig();
     }
 
     /**
      * Setup the config.
      *
-     * @param \Illuminate\Contracts\Foundation\Application $app
-     *
      * @return void
      */
-    protected function setupConfig(Application $app)
+    protected function setupConfig()
     {
         $source = realpath(__DIR__.'/../config/emoji.php');
 
-        if ($app instanceof LaravelApplication && $app->runningInConsole()) {
+        if ($this->app instanceof LaravelApplication && $this->app->runningInConsole()) {
             $this->publishes([$source => config_path('emoji.php')]);
-        } elseif ($app instanceof LumenApplication) {
-            $app->configure('emoji');
+        } elseif ($this->app instanceof LumenApplication) {
+            $this->app->configure('emoji');
         }
 
         $this->mergeConfigFrom($source, 'emoji');
     }
 
     /**
-     * Register the parser class.
-     *
-     * @param \Illuminate\Contracts\Foundation\Application $app
+     * Register the service provider.
      *
      * @return void
      */
-    protected function registerParser(Application $app)
+    public function register()
     {
-        $app->singleton(EmojiParser::class, function (Application $app) {
+        $this->registerParser();
+    }
+
+    /**
+     * Register the parser class.
+     *
+     * @return void
+     */
+    protected function registerParser()
+    {
+        $this->app->singleton(EmojiParser::class, function (Container $app) {
             $map = $app->cache->remember('emoji', 10080, function () use ($app) {
                 $headers = ['Accept' => 'application/vnd.github.v3+json'];
 
