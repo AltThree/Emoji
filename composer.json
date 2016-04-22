@@ -20,8 +20,8 @@
     "require": {
         "php": ">=5.5.9",
         "guzzlehttp/guzzle": "^5.3|^6.0",
-        "illuminate/contracts": "5.1.*|5.2.*",
-        "illuminate/support": "5.1.*|5.2.*",
+        "illuminate/contracts": "5.1.*|5.2.*|5.3.*",
+        "illuminate/support": "5.1.*|5.2.*|5.3.*",
         "league/commonmark": "^0.13"
     },
     "require-dev": {
