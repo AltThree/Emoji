@@ -18,7 +18,7 @@ Instead, you may of course manually update your require block and run `composer 
 ```json
 {
     "require": {
-        "alt-three/emoji": "^3.0"
+        "alt-three/emoji": "^4.0"
     }
 }
 ```
