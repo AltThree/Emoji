@@ -22,10 +22,10 @@
         "guzzlehttp/guzzle": "^5.3|^6.0",
         "illuminate/contracts": "5.1.*|5.2.*|5.3.*",
         "illuminate/support": "5.1.*|5.2.*|5.3.*",
-        "league/commonmark": "^0.13"
+        "league/commonmark": "^0.15"
     },
     "require-dev": {
-        "graham-campbell/markdown": "^6.0",
+        "graham-campbell/markdown": "^7.0",
         "graham-campbell/testbench": "^3.1",
         "phpunit/phpunit": "^4.8|^5.0"
     },
@@ -44,7 +44,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "3.1-dev"
+            "dev-master": "4.0-dev"
         }
     },
     "minimum-stability": "dev",
