@@ -25,6 +25,7 @@
         "league/commonmark": "^0.15"
     },
     "require-dev": {
+        "graham-campbell/analyzer": "^1.0",
         "graham-campbell/markdown": "^8.0",
         "graham-campbell/testbench": "^4.0",
         "phpunit/phpunit": "^6.0"
