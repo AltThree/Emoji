@@ -13,7 +13,9 @@ To get the latest version, simply require the project using [Composer](https://g
 $ composer require alt-three/emoji
 ```
 
-Once installed, you need to register the `AltThree\Emoji\EmojiServiceProvider` service provider in your `config/app.php`. If you'd like to use with [Laravel Markdown](https://github.com/GrahamCampbell/Laravel-Markdown), you'll need to add the `AltThree\Emoji\EmojiExtension` class to the `'extensions'` array in your `config/markdown.php` file.
+Once installed, you need to register the `AltThree\Emoji\EmojiServiceProvider` service provider in your `config/app.php`, or if you're using Laravel 5.5, this can be done via the automatic package discovery.
+
+If you'd like to use with [Laravel Markdown](https://github.com/GrahamCampbell/Laravel-Markdown), you'll need to add the `AltThree\Emoji\EmojiExtension` class to the `'extensions'` array in your `config/markdown.php` file.
 
 
 ## Security
