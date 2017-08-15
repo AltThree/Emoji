@@ -76,7 +76,7 @@ class EmojiServiceProvider extends ServiceProvider
                 $headers = ['Accept' => 'application/vnd.github.v3+json'];
 
                 if ($token = $app->config->get('emoji.token')) {
-                    $headers['OAUTH-TOKEN'] = $token;
+                    $headers['Authorization'] = "token {$token}";
                 }
                 
                 $response = (new Client())->get('https://api.github.com/emojis', ['headers' => $headers]);
