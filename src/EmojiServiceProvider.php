@@ -78,10 +78,10 @@ class EmojiServiceProvider extends ServiceProvider
                 if ($token = $app->config->get('emoji.token')) {
                     $headers['OAUTH-TOKEN'] = $token;
                 }
+                
+                $response = (new Client())->get('https://api.github.com/emojis', ['headers' => $headers]);
 
-                return json_decode((new Client())->get('https://api.github.com/emojis', [
-                    'headers' => $headers,
-                ])->getBody(), true);
+                return json_decode((string) $response->getBody(), true);
             });
 
             return new EmojiParser($map);
