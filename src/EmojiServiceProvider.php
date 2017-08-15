@@ -81,7 +81,7 @@ class EmojiServiceProvider extends ServiceProvider
                 
                 $response = (new Client())->get('https://api.github.com/emojis', ['headers' => $headers]);
 
-                return json_decode((string) $response->getBody(), true);
+                return (array) json_decode((string) $response->getBody(), true);
             });
 
             return new EmojiParser($map);
