@@ -78,7 +78,7 @@ class EmojiServiceProvider extends ServiceProvider
                 if ($token = $app->config->get('emoji.token')) {
                     $headers['Authorization'] = "token {$token}";
                 }
-                
+
                 $response = (new Client())->get('https://api.github.com/emojis', ['headers' => $headers]);
 
                 return (array) json_decode((string) $response->getBody(), true);
