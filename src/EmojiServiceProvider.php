@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace AltThree\Emoji;
 
-use GuzzleHttp\Client;
+use GrahamCampbell\GuzzleFactory\GuzzleFactory;
 use Illuminate\Contracts\Container\Container;
 use Illuminate\Foundation\Application as LaravelApplication;
 use Illuminate\Support\ServiceProvider;
@@ -79,7 +79,7 @@ class EmojiServiceProvider extends ServiceProvider
                     $headers['Authorization'] = "token {$token}";
                 }
 
-                $response = (new Client())->get('https://api.github.com/emojis', ['headers' => $headers]);
+                $response = GuzzleFactory::make()->get('https://api.github.com/emojis', ['headers' => $headers]);
 
                 return (array) json_decode((string) $response->getBody(), true);
             });
