@@ -22,7 +22,7 @@
         "guzzlehttp/guzzle": "^5.3|^6.0",
         "illuminate/contracts": "5.1.*|5.2.*|5.3.*|5.4.*|5.5.*",
         "illuminate/support": "5.1.*|5.2.*|5.3.*|5.4.*|5.5.*",
-        "league/commonmark": "^0.15"
+        "league/commonmark": "^0.15|^0.16"
     },
     "require-dev": {
         "graham-campbell/analyzer": "^1.1",
