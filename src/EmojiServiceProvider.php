@@ -43,7 +43,7 @@ class EmojiServiceProvider extends ServiceProvider
      */
     protected function setupConfig()
     {
-        $source = realpath(__DIR__.'/../config/emoji.php');
+        $source = realpath($raw = __DIR__.'/../config/emoji.php') ?: $raw;
 
         if ($this->app instanceof LaravelApplication && $this->app->runningInConsole()) {
             $this->publishes([$source => config_path('emoji.php')]);
