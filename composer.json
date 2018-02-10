@@ -12,8 +12,8 @@
     "require": {
         "php": "^7.0",
         "graham-campbell/guzzle-factory": "^3.0",
-        "illuminate/contracts": "5.1.*|5.2.*|5.3.*|5.4.*|5.5.*|5.6.*",
-        "illuminate/support": "5.1.*|5.2.*|5.3.*|5.4.*|5.5.*|5.6.*",
+        "illuminate/contracts": "5.1.*|5.2.*|5.3.*|5.4.*|5.5.*",
+        "illuminate/support": "5.1.*|5.2.*|5.3.*|5.4.*|5.5.*",
         "league/commonmark": "^0.17"
     },
     "require-dev": {
