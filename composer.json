@@ -17,9 +17,9 @@
         "league/commonmark": "^0.17"
     },
     "require-dev": {
-        "graham-campbell/analyzer": "^2.0",
-        "graham-campbell/markdown": "^10.0",
-        "graham-campbell/testbench": "^5.0",
+        "graham-campbell/analyzer": "^2.1",
+        "graham-campbell/markdown": "^10.1",
+        "graham-campbell/testbench": "^5.1",
         "phpunit/phpunit": "^6.5|^7.0"
     },
     "autoload": {
@@ -37,7 +37,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "6.0-dev"
+            "dev-master": "6.1-dev"
         },
         "laravel": {
             "providers": [
