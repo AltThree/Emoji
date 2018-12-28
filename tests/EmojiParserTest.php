@@ -13,6 +13,10 @@ declare(strict_types=1);
 
 namespace AltThree\Tests\Emoji;
 
+use AltThree\Emoji\Exceptions\FetchException;
+use AltThree\Emoji\Repositories\RepositoryInterface;
+use Exception;
+
 /**
  * This is the emoji parser test class.
  *
@@ -39,5 +43,24 @@ class EmojiParserTest extends AbstractTestCase
     public function testRender($input, $output)
     {
         $this->assertSame("$output\n", $this->app->markdown->convertToHtml($input));
+    }
+
+    /**
+     * @expectedException \AltThree\Emoji\Exceptions\FetchException
+     * @expectedExceptionMessage Failed to fetch the emoji map.
+     */
+    public function testRepoFailure()
+    {
+        $this->app->singleton(RepositoryInterface::class, function () {
+            return new class implements RepositoryInterface
+            {
+                public function get()
+                {
+                    throw new FetchException(new Exception());
+                }
+            };
+        });
+
+        $this->app->markdown->convertToHtml(':+1:');
     }
 }

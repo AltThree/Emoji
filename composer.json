@@ -20,6 +20,7 @@
         "graham-campbell/analyzer": "^2.1",
         "graham-campbell/markdown": "^10.2",
         "graham-campbell/testbench": "^5.1",
+        "mockery/mockery": "^1.0",
         "phpunit/phpunit": "^6.5|^7.0"
     },
     "autoload": {
@@ -37,7 +38,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "6.1-dev"
+            "dev-master": "7.0-dev"
         },
         "laravel": {
             "providers": [

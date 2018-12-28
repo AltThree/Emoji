@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace AltThree\Emoji;
 
+use AltThree\Emoji\Repositories\RepositoryInterface;
 use League\CommonMark\Inline\Element\Image;
 use League\CommonMark\Inline\Parser\AbstractInlineParser;
 use League\CommonMark\InlineParserContext;
@@ -25,22 +26,29 @@ use League\CommonMark\InlineParserContext;
 class EmojiParser extends AbstractInlineParser
 {
     /**
+     * The emoji repo.
+     *
+     * @var \AltThree\Emoji\Repositories\RepositoryInterface
+     */
+    protected $repo;
+
+    /**
      * The emoji mappings.
      *
-     * @var string[]
+     * @var string[]|null
      */
     protected $map;
 
     /**
      * Create a new emoji parser instance.
      *
-     * @param string[] $map
+     * @param \AltThree\Emoji\Repositories\RepositoryInterface $repo
      *
      * @return void
      */
-    public function __construct(array $map)
+    public function __construct(RepositoryInterface $repo)
     {
-        $this->map = $map;
+        $this->repo = $repo;
     }
 
     /**
@@ -59,6 +67,8 @@ class EmojiParser extends AbstractInlineParser
      * If it does, then we do the necessary.
      *
      * @param \League\CommonMark\InlineParserContext $inlineContext
+     *
+     * @throws \AltThree\Emoji\Exceptions\FetchException
      *
      * @return bool
      */
@@ -92,6 +102,10 @@ class EmojiParser extends AbstractInlineParser
         }
 
         $key = substr($handle, 0, -1);
+
+        if ($this->map === null) {
+            $this->map = $this->repo->get();
+        }
 
         if (!array_key_exists($key, $this->map)) {
             $cursor->restoreState($saved);

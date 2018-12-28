@@ -15,6 +15,7 @@ namespace AltThree\Tests\Emoji;
 
 use AltThree\Emoji\EmojiExtension;
 use AltThree\Emoji\EmojiParser;
+use AltThree\Emoji\Repositories\RepositoryInterface;
 use GrahamCampbell\TestBenchCore\ServiceProviderTrait;
 
 /**
@@ -25,6 +26,11 @@ use GrahamCampbell\TestBenchCore\ServiceProviderTrait;
 class ServiceProviderTest extends AbstractTestCase
 {
     use ServiceProviderTrait;
+
+    public function testEmojiRepositoryIsInjectable()
+    {
+        $this->assertIsInjectable(RepositoryInterface::class);
+    }
 
     public function testEmojiParserIsInjectable()
     {

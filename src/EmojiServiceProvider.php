@@ -13,6 +13,9 @@ declare(strict_types=1);
 
 namespace AltThree\Emoji;
 
+use AltThree\Emoji\Repositories\CachingRepository;
+use AltThree\Emoji\Repositories\GitHubRepository;
+use AltThree\Emoji\Repositories\RepositoryInterface;
 use GrahamCampbell\GuzzleFactory\GuzzleFactory;
 use Illuminate\Contracts\Container\Container;
 use Illuminate\Foundation\Application as LaravelApplication;
@@ -61,7 +64,31 @@ class EmojiServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->registerRepository();
         $this->registerParser();
+    }
+
+    /**
+     * Register the repository class.
+     *
+     * @return void
+     */
+    protected function registerRepository()
+    {
+        $this->app->singleton(CachingRepository::class, function (Container $app) {
+            $repo = new GitHubRepository(
+                GuzzleFactory::make(),
+                $app->config->get('emoji.token')
+            );
+
+            $cache = $app->cache->store($app->config->get('emoji.connection'));
+            $key = $app->config->get('emoji.key', 'emoji');
+            $life = (int) $app->config->get('emoji.life', 10080);
+
+            return new CachingRepository($repo, $cache, $key, $life);
+        });
+
+        $this->app->alias(CachingRepository::class, RepositoryInterface::class);
     }
 
     /**
@@ -72,19 +99,7 @@ class EmojiServiceProvider extends ServiceProvider
     protected function registerParser()
     {
         $this->app->singleton(EmojiParser::class, function (Container $app) {
-            $map = $app->cache->remember('emoji', 10080, function () use ($app) {
-                $headers = ['Accept' => 'application/vnd.github.v3+json'];
-
-                if ($token = $app->config->get('emoji.token')) {
-                    $headers['Authorization'] = "token {$token}";
-                }
-
-                $response = GuzzleFactory::make()->get('https://api.github.com/emojis', ['headers' => $headers]);
-
-                return (array) json_decode((string) $response->getBody(), true);
-            });
-
-            return new EmojiParser($map);
+            return new EmojiParser($app->make(RepositoryInterface::class));
         });
     }
 
