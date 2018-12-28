@@ -16,13 +16,13 @@ namespace AltThree\Tests\Emoji\Exceptions;
 use AltThree\Emoji\Exceptions\FetchException;
 use AltThree\Emoji\Repositories\CachingRepository;
 use AltThree\Emoji\Repositories\RepositoryInterface;
-use GrahamCampbell\TestBenchCore\MockeryTrait;
 use Exception;
+use GrahamCampbell\TestBenchCore\MockeryTrait;
 use Illuminate\Cache\Repository as Cache;
 use Illuminate\Contracts\Cache\Repository;
 use Illuminate\Contracts\Cache\Store;
-use PHPUnit\Framework\TestCase;
 use Mockery;
+use PHPUnit\Framework\TestCase;
 
 /**
  * This is the caching repository test class.

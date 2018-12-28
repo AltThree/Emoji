@@ -14,7 +14,6 @@ declare(strict_types=1);
 namespace AltThree\Emoji\Exceptions;
 
 use Exception;
-use PHPUnit\Framework\TestCase;
 
 /**
  * This is the emoji fetch exception class.
@@ -23,15 +22,15 @@ use PHPUnit\Framework\TestCase;
  */
 class FetchException extends Exception implements EmojiExceptionInterface
 {
-	/**
-	 * Create a new emoji fetch exception instance.
-	 *
-	 * @param \Exception $e
-	 *
-	 * @return void
-	 */
+    /**
+     * Create a new emoji fetch exception instance.
+     *
+     * @param \Exception $e
+     *
+     * @return void
+     */
     public function __construct(Exception $e)
     {
-    	parent::__construct('Failed to fetch the emoji map.', 0, $e);
+        parent::__construct('Failed to fetch the emoji map.', 0, $e);
     }
 }

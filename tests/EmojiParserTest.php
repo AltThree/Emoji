@@ -52,8 +52,7 @@ class EmojiParserTest extends AbstractTestCase
     public function testRepoFailure()
     {
         $this->app->singleton(RepositoryInterface::class, function () {
-            return new class implements RepositoryInterface
-            {
+            return new class() implements RepositoryInterface {
                 public function get()
                 {
                     throw new FetchException(new Exception());

@@ -13,16 +13,15 @@ declare(strict_types=1);
 
 namespace AltThree\Tests\Emoji\Exceptions;
 
-use AltThree\Emoji\Exceptions\FetchException;
 use AltThree\Emoji\Repositories\GitHubRepository;
 use AltThree\Emoji\Repositories\RepositoryInterface;
-use GrahamCampbell\TestBenchCore\MockeryTrait;
 use Exception;
+use GrahamCampbell\TestBenchCore\MockeryTrait;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\GuzzleException;
+use Mockery;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
-use Mockery;
 
 /**
  * This is the github repository test class.
@@ -81,7 +80,8 @@ class GitHubRepositoryTest extends TestCase
 
         $c->shouldReceive('request')->once()
             ->with('get', 'https://api.github.com/emojis', ['headers' => ['Accept' => 'application/vnd.github.v3+json']])
-            ->andThrow(new class extends Exception implements GuzzleException {});
+            ->andThrow(new class() extends Exception implements GuzzleException {
+            });
 
         $r->get();
     }
@@ -97,7 +97,8 @@ class GitHubRepositoryTest extends TestCase
 
         $c->shouldReceive('request')->once()
             ->with('get', 'https://api.github.com/emojis', ['headers' => ['Accept' => 'application/vnd.github.v3+json', 'Authorization' => 'token ABCDEFGH']])
-            ->andThrow(new class extends Exception implements GuzzleException {});
+            ->andThrow(new class() extends Exception implements GuzzleException {
+            });
 
         $r->get();
     }
